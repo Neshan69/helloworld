@@ -110,7 +110,37 @@
     margin-bottom: 1.25rem;
     color: var(--text);
   }
-  
+#item-count-graph{
+
+    display: flex; 
+    align-items: flex-end; 
+    gap: 0.5rem; 
+    min-height: 48px;
+}
+
+#count-bar {
+  height: 24px;
+  min-width: 24px;
+  width: 32px;
+  background: var(--primary, #4f46e5);
+  border-radius: 8px 8px 0 0;
+  transition: height 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#bar-count {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5px;
+  user-select: none;
+  padding-bottom: 2px;
+}
   /* ── LIST ── */
   #mylist {
     list-style: none;

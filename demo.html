@@ -6,23 +6,52 @@
   <title>DoM</title>
   <link rel="stylesheet" href="demo.css">
 </head>
+
+
 <body>
+  <!-- 
+    Bootstrap-based preloader (no custom CSS required).
+    Note: For Bootstrap 5+, use spinner-border class.
+    Make sure <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> 
+    is included in your <head> (and ideally demo.js loads at the end of <body>).
+  -->
+  <div id="preloader" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-white" style="z-index: 9999; opacity: 0.9;">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 
   <!-- HEADER -->
   <header>
     <h1>Logo</h1>
     <nav class="navigation">
-      <ul>
-        <li><a href="#">home</a></li>
-        <li><a href="#">about</a></li>
-        <li><a href="#">contacts</a></li>
-        <li><a href="#">profile</a></li>
-      </ul>
+        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Contact</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">About</button>
+            </li>
+          </ul>
     </nav>
   </header>
 
   <!-- MAIN -->
   <main>
+    <div id="item-count-graph">1</span>
+        </div>
+        <span style="font-size: 1rem; color: var(--text-muted, #555);margin-left:6px;">
+          Items
+        </span>
+      </div>
+    </div>
+
     <h1>My List</h1>
     <ul id="mylist">
       <li>Item 1</li>
@@ -54,4 +83,7 @@
 
   <script src="demo.js"></script>
 </body>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
 </html>
