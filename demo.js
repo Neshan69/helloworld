@@ -13,11 +13,11 @@ const barCount = document.getElementById('bar-count');
 function removePreloader() {
   const preloader = document.getElementById('preloader');
   if (preloader) {
-    preloader.style.transition = 'opacity 3s';
+    preloader.style.transition = 'opacity 0.8s';
     preloader.style.opacity = '0'; // Start fade-out
     setTimeout(() => {
       preloader.remove();
-    }, 700); // Wait for fade
+    }, 500); // Wait for fade
   }
 }
 

@@ -1,39 +1,65 @@
-/* ── CSS VARIABLES ── */
+/* --- CSS VARIABLES for Online Restaurant Shopping Site --- */
 :root {
-    --primary:       #4f46e5;
-    --primary-light: #f0f0ff;
-    --primary-dark:  #3730a3;
-    --bg:            #f0f2f5;
-    --surface:       #ffffff;
-    --text:          #1a1a2e;
-    --text-muted:    #555555;
-    --border:        #e5e7eb;
-    --radius-sm:     6px;
-    --radius-md:     8px;
-    --shadow-sm:     0 1px 4px rgba(0,0,0,0.06);
-    --shadow-md:     0 2px 8px rgba(0,0,0,0.08);
-    --shadow-up:     0 -2px 8px rgba(0,0,0,0.06);
-    --transition:    0.2s ease;
-    --header-height: 64px;
-    --font:          'Segoe UI', sans-serif;
-    --fs-xs:         0.8rem;
-    --fs-sm:         0.85rem;
-    --fs-base:       0.9rem;
-    --fs-md:         0.95rem;
-    --fs-lg:         1.2rem;
-    --fs-xl:         1.4rem;
-    --fs-2xl:        1.6rem;
-    --fw-medium:     500;
-    --fw-bold:       700;
-    --gap-xs:        0.25rem;
-    --gap-sm:        0.4rem;
-    --gap-md:        0.5rem;
-    --gap-lg:        0.75rem;
-    --gap-xl:        2rem;
-    --max-w-main:    520px;
-    --max-w-footer:  960px;
-  }
-  
+  /* Brand Colors */
+  --primary:        #B86B28;           /* Cafe brown-orange for highlights, buttons, etc */
+  --primary-light:  #F9EDE1;           /* Light, creamy beige for backgrounds, cards */
+  --primary-dark:   #7A401A;           /* Deep roast brown for header/footer, hover */
+
+  --accent:         #3B8070;           /* Fresh green for promo tags, callouts */
+  --accent-light:   #D3F2E5;           /* Accent background touch */
+
+  /* Core Backgrounds */
+  --bg:             #FFF8F4;           /* Soft warm background for site */
+  --surface:        #FFFFFF;           /* Card/section surfaces (pure white) */
+  --surface-alt:    #FFFAF7;           /* Very subtle card background variation */
+
+  /* Typography */
+  --text:           #37281D;           /* Rich, dark espresso for body text */
+  --text-muted:     #9B8577;           /* Soft coffee-muted subtext */
+  --text-on-primary:#FFFDFB;           /* For dark buttons/headers on primary */
+
+  --font:           'Montserrat', 'Segoe UI', 'Arial', sans-serif; 
+  --font-logo:      'Pacifico', cursive;  /* For restaurant/cafe brand name */
+
+  /* Borders & Radius */
+  --border:         #EDD5C0;           /* Light tan for subtle borders */
+  --radius-sm:      6px;
+  --radius-md:      10px;
+  --radius-lg:      20px;
+
+  /* Shadows */
+  --shadow-sm:      0 1px 4px rgba(184,107,40,0.07);
+  --shadow-md:      0 4px 18px rgba(58, 40, 20, 0.14);
+  --shadow-up:      0 -2px 16px rgba(184, 107, 40, 0.07);
+
+  /* Sizing, Spacing, Layout */
+  --header-height:  70px;
+  --max-w-main:     1200px;
+  --max-w-footer:   1200px;
+  --gap-xs:         0.25rem;
+  --gap-sm:         0.5rem;
+  --gap-md:         1rem;
+  --gap-lg:         2rem;
+  --gap-xl:         3.5rem;
+
+  /* Typography Sizes & Weights */
+  --fs-xs:          0.84rem;
+  --fs-sm:          0.95rem;
+  --fs-base:        1.05rem;
+  --fs-md:          1.15rem;
+  --fs-lg:          1.35rem;
+  --fs-xl:          1.6rem;
+  --fs-2xl:         2.1rem;
+  --fw-medium:      500;
+  --fw-bold:        700;
+
+  /* Animation */
+  --transition:     0.19s cubic-bezier(.7,.2,.4,1);
+
+  /* Other */
+  --product-card-width: 340px;
+  --product-card-gap:   1.5rem;
+}
   /* ── RESET ── */
   * {
     margin: 0;
