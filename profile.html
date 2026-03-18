@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Account - Online Restaurant</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .profile-container {
+      max-width: 410px;
+      margin: 2.5rem auto;
+      background: var(--surface, #fff);
+      border-radius: var(--radius-lg, 18px);
+      box-shadow: 0 2px 22px #b86b2812;
+      padding: 2.2rem 2rem 1.5rem 2rem;
+      font-family: var(--font, 'Montserrat', sans-serif);
+      color: var(--text);
+    }
+    .profile-container h2 {
+      font-family: var(--font-logo, 'Pacifico', cursive);
+      color: var(--primary);
+      margin-bottom: 0.77rem;
+      text-align: center;
+    }
+    .profile-form label {
+      font-weight: 600;
+      margin-top: 1.2em;
+      display: block;
+      color: var(--primary-dark);
+      letter-spacing: 0.01em;
+      font-size: var(--fs-md, 1.07rem);
+    }
+    .profile-form input {
+      width: 100%;
+      padding: 0.55em 0.7em;
+      margin-top: 0.38em;
+      margin-bottom: 0.7em;
+      border-radius: var(--radius-md, 10px);
+      border: 1px solid var(--border, #EDD5C0);
+      background: var(--surface-alt, #FFFAF7);
+      font-size: 1em;
+      transition: border 0.17s;
+    }
+    .profile-form input:focus {
+      border-color: var(--primary, #B86B28);
+      outline: none;
+    }
+    .profile-form button {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: var(--text-on-primary, #FFFDFB);
+      padding: 0.58em 0;
+      border: none;
+      border-radius: var(--radius-md, 10px);
+      font-size: var(--fs-md, 1rem);
+      letter-spacing: .01em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition, 0.2s);
+      margin-top: 1.1em;
+      margin-bottom: 0.6em;
+    }
+    .profile-form button:hover,
+    .profile-form button:focus {
+      background: var(--primary-dark, #7A401A);
+    }
+    .profile-form .form-hint {
+      color: var(--text-muted, #9B8577);
+      font-size: var(--fs-xs, 0.9em);
+      text-align: center;
+      margin-top: 0.4em;
+    }
+
+    .profile-form .success-message {
+      color: green;
+      font-weight: bold;
+      margin-top: 1em;
+      text-align: center;
+      display: none;
+    }
+    .profile-form .error-message {
+      color: #B86B28;
+      font-weight: bold;
+      margin-top: 1em;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="profile-container">
+      <h2>Create Your Account</h2>
+      <form class="profile-form" id="profile-form" autocomplete="on">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required placeholder="Eg: Jamie Roberts">
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="Eg: your@email.com" autocomplete="email">
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required placeholder="Eg: +1 555 234 6789" pattern="[\d\+\s\-]+" autocomplete="tel">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required minlength="6" placeholder="Choose a strong password" autocomplete="new-password">
+
+        <button type="submit">Create Account</button>
+        <div class="form-hint">
+          Already have an account?
+          <a href="login.html" style="color: var(--primary); text-decoration: underline;">Log In</a>
+        </div>
+        <div class="success-message" id="success-message">Your details have been submitted!</div>
+        <div class="error-message" id="error-message">Sorry, there was a problem sending your details.</div>
+      </form>
+    </div>
+  </main>
+  <script>
+    // Replace with your real email address
+    const RECEIVER_EMAIL = "your@email.com"; // TODO: change this to your email
+
+    document.getElementById('profile-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Grab form values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      // We do NOT send password by email for security, but including as requested:
+      const password = document.getElementById('password').value.trim();
+
+      // Prepare message
+      const subject = encodeURIComponent("New User Registration Notification");
+      const body = encodeURIComponent(
+        `A user has registered on your site:\n\n` +
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Phone: ${phone}\n` +
+        `Password: ${password}\n\n` +
+        `-- End of details --`
+      );
+
+      // -- Option 1: Use an Email Service API (recommended, requires backend or an external service) --
+      // For demonstration, here's how to use EmailJS (client-side, free for low usage):
+      // 1. Create an account at https://www.emailjs.com/
+      // 2. Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_PUBLIC_KEY' below with your credentials
+
+      // REMOVE THE FOLLOWING TO USE EMAILJS:
+      // (function() {
+      //   emailjs.init('YOUR_PUBLIC_KEY');
+      // })();
+      // emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+      //     name: name,
+      //     email: email,
+      //     phone: phone,
+      //     password: password   // Not recommended to send plain password in real apps!
+      // })
+      // .then(function(response) {
+      //   document.getElementById('success-message').style.display = 'block';
+      //   document.getElementById('error-message').style.display = 'none';
+      // }, function(error) {
+      //   document.getElementById('success-message').style.display = 'none';
+      //   document.getElementById('error-message').style.display = 'block';
+      // });
+      // return;
+
+      // -- Option 2: Mailto (only opens user email app, doesn't send automatically) --
+      // window.location.href = `mailto:${RECEIVER_EMAIL}?subject=${subject}&body=${body}`;
+
+      // -- Option 3: Show modal instructing manual email for demo --
+      // Un-comment below if no API/service set up
+      alert(
+        "This demo can't automatically email your info to the admin.\n\nTo enable this, connect a service like EmailJS, SMTP server, or build a backend endpoint for sending email on submit.\n\nHere's the info you would receive:\n\n" +
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPassword: ${password}`
+      );
+      document.getElementById('success-message').style.display = 'block';
+      document.getElementById('error-message').style.display = 'none';
+
+      // In a real-world deployment, set up a backend route like '/api/send-profile' and POST form data there to handle sending email securely.
+    });
+  </script>
+</body>
+</html>
