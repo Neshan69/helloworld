@@ -153,6 +153,7 @@
     box-shadow: var(--shadow-up);
     padding: var(--gap-xl);
     margin-top: auto;
+    width: 100%;
   }
   
   .footer-inner {
@@ -200,11 +201,12 @@
     color: var(--text-muted);
     text-decoration: none;
     text-transform: capitalize;
-    transition: color var(--transition);
+    transition: color var(--transition), text-decoration 0.15s;
   }
   
   .footer-links a:hover {
     color: var(--primary);
+    text-decoration: underline;
   }
   
   .footer-bottom {
