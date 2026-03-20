@@ -1,3 +1,6 @@
+// smoke test
+console.log("demo.js loaded");
+
 // Small site JS:
 // - Remove preloader if present
 // - Chat widget: sends user messages to POST /api/chat and displays replies
@@ -94,6 +97,7 @@ function initChatWidget() {
 
 document.addEventListener("DOMContentLoaded", initChatWidget);
 
+/*
 // Small site JS:
 // - Remove preloader if present
 // - Chat widget: sends user messages to POST /api/chat and displays replies
@@ -336,3 +340,4 @@ const res = await fetch("/api/profile", {
 const result = await res.json();
 document.getElementById("success-message").style.display = "block";
 document.getElementById("error-message").style.display = "none";
+*/
