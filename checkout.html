@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Kanchhi ko Bhatti</title>
+  <link rel="stylesheet" href="demo.css">
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    :root {
+      --primary: #B86B28;
+      --primary-dark: #7A401A;
+      --primary-light: #F9EDE1;
+      --surface: #fff;
+      --text: #37281D;
+      --text-muted: #9B8577;
+      --success: #28a745;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+    }
+    
+    /* Header */
+    .checkout-header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .checkout-header h1 {
+      font-family: cursive;
+      font-size: 1.5rem;
+    }
+    
+    .checkout-header a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    /* Main Container */
+    .checkout-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Sections */
+    .checkout-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+    }
+    
+    .checkout-section h2 {
+      color: var(--text);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-light);
+    }
+    
+    /* Cart Items */
+    .cart-items {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    
+    .cart-item-info {
+      flex: 1;
+    }
+    
+    .cart-item-name {
+      font-weight: 500;
+      color: var(--text);
+    }
+    
+    .cart-item-price {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    .cart-item-discount {
+      color: var(--success);
+      font-size: 0.8rem;
+    }
+    
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .cart-item-quantity button {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .cart-item-quantity button:hover {
+      background: var(--primary-light);
+    }
+    
+    .cart-item-total {
+      font-weight: 600;
+      color: var(--primary);
+      min-width: 80px;
+      text-align: right;
+    }
+    
+    .cart-item-remove {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+    
+    .cart-item-remove:hover {
+      background: #c82333;
+    }
+    
+    /* Clear Cart Button */
+    .clear-cart-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    
+    .clear-cart-btn:hover {
+      background: #c82333;
+    }
+    
+    /* Order Summary */
+    .order-summary {
+      position: sticky;
+      top: 2rem;
+    }
+    
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+    }
+    
+    .summary-row.discount {
+      color: var(--success);
+    }
+    
+    .summary-row.total {
+      border-top: 2px solid var(--primary);
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    
+    .summary-row.total .amount {
+      color: var(--primary);
+    }
+    
+    /* Promo Code Section */
+    .promo-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .promo-section h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    
+    .promo-input-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .promo-input-group input {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .promo-input-group button {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .promo-input-group button:hover {
+      background: var(--primary-dark);
+    }
+    
+    .promo-message {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    
+    .promo-message.success {
+      color: var(--success);
+    }
+    
+    .promo-message.error {
+      color: #dc3545;
+    }
+    
+    /* Payment Methods */
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .payment-option:hover {
+      border-color: var(--primary);
+    }
+    
+    .payment-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    
+    .payment-option input {
+      display: none;
+    }
+    
+    .payment-icon {
+      font-size: 1.5rem;
+    }
+    
+    /* Place Order Button */
+    .place-order-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 1rem;
+    }
+    
+    .place-order-btn:hover {
+      background: var(--primary-dark);
+    }
+    
+    .place-order-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    
+    /* Empty Cart */
+    .empty-cart {
+      text-align: center;
+      padding: 3rem;
+    }
+    
+    .empty-cart p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    
+    .empty-cart a {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+    
+    /* Success Message */
+    .order-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .order-success.show {
+      display: block;
+    }
+    
+    .order-success .checkmark {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 1rem;
+    }
+    
+    .order-success h3 {
+      color: var(--success);
+      margin-bottom: 0.5rem;
+    }
+    
+    .order-success .order-id {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FFF8F4; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="text-align: center;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1202/1202125.png" alt="Tomato" style="width: 80px; height: 80px; animation: spin 1s linear infinite; margin-bottom: 20px;">
+      <h1 style="font-family: cursive; color: #B86B28; font-size: 2rem; margin-bottom: 10px;">Kanchhi ko Bhatti</h1>
+      <p style="color: #9B8577; font-size: 1.1rem;">कान्छीको भट्टी</p>
+    </div>
+  </div>
+
+  <style>
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  </style>
+
+  <script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      const preloader = document.getElementById('preloader');
+      preloader.style.transition = 'opacity 0.5s';
+      preloader.style.opacity = '0';
+      setTimeout(function() { preloader.style.display = 'none'; }, 500);
+    }, 1500);
+  });
+  </script>
+  
+  <header class="checkout-header">
+    <h1><a href="index.html">🍽️ DoM Checkout</a></h1>
+    <a href="index.html">← Back to Menu</a>
+  </header>
+  
+  <div class="checkout-container">
+    <!-- Left Column -->
+    <div class="checkout-main">
+      <!-- Cart Items -->
+      <div class="checkout-section">
+        <h2>🛒 Your Cart</h2>
+        <div class="cart-items" id="cart-items">
+          <!-- Cart items will be populated here -->
+        </div>
+        <button class="clear-cart-btn" id="clear-cart-btn" onclick="clearCart()">🗑️ Clear All Items</button>
+      </div>
+      
+      <!-- Customer Info -->
+      <div class="checkout-section">
+        <h2>Customer Information</h2>
+        <form id="customer-form">
+          <div class="form-group">
+            <label for="customer-name">Full Name *</label>
+            <input type="text" id="customer-name" name="name" required placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label for="customer-email">Email Address *</label>
+            <input type="email" id="customer-email" name="email" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="customer-phone">Phone Number *</label>
+            <input type="tel" id="customer-phone" name="phone" required placeholder="+977-98xxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label for="customer-address">Delivery Address</label>
+            <textarea id="customer-address" name="address" placeholder="Enter your delivery address (optional)"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="customer-notes">Order Notes</label>
+            <textarea id="customer-notes" name="notes" placeholder="Special instructions for your order (optional)"></textarea>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Payment Method -->
+      <div class="checkout-section">
+        <h2>Payment Method</h2>
+        <div class="payment-methods">
+          <label class="payment-option selected" id="cash-option">
+            <input type="radio" name="payment" value="cash" checked>
+            <span class="payment-icon">💵</span>
+            <div>
+              <strong>Cash on Delivery</strong>
+              <div class="text-muted" style="font-size: 0.85rem;">Pay when you receive your order</div>
+            </div>
+          </label>
+          <label class="payment-option" id="esewa-option">
+            <input type="radio" name="payment" value="esewa">
+            <span class="payment-icon">📱</span>
+            <div>
+              <strong>eSewa</strong>
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCartItems();
+      updateSummary();
+      
+      // Payment option selection
+      document.querySelectorAll('.payment-option').forEach(option => {
+        option.addEventListener('click', function() {
+          document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+          this.classList.add('selected');
+          this.querySelector('input').checked = true;
+        });
+      });
+    });
+    
+    // Render cart items
+    function renderCartItems() {
+      const cartItemsEl = document.getElementById('cart-items');
+      
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="empty-cart">
+            <p>Your cart is empty</p>
+            <a href="index.html">Browse Menu</a>
+          </div>
+        `;
+        document.getElementById('place-order-btn').disabled = true;
+        return;
+      }
+      
+      cartItemsEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">NPR ${item.price} each</div>
+          </div>
+          <div class="cart-item-quantity">
+            <button onclick="updateQuantity('${item.name}', -1)">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="updateQuantity('${item.name}', 1)">+</button>
+          </div>
+          <div class="cart-item-total">NPR ${(item.price * item.quantity).toLocaleString()}</div>
+        </div>
+      `).join('');
+    }
+    
+    // Update order summary
+    function updateSummary() {
+      const subtotal = getCartTotal();
+      const total = subtotal + deliveryFee;
+      
+      document.getElementById('subtotal').textContent = `NPR ${subtotal.toLocaleString()}`;
+      document.getElementById('order-total').textContent = `NPR ${total.toLocaleString()}`;
+    }
+    
+    // Submit order
+    async function submitOrder() {
+      // Validate form
+      const name = document.getElementById('customer-name').value.trim();
+      const email = document.getElementById('customer-email').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const address = document.getElementById('customer-address').value.trim();
+      const notes = document.getElementById('customer-notes').value.trim();
+      const payment = document.querySelector('input[name="payment"]:checked').value;
+      
+      if (!name || !email || !phone) {
+        alert('Please fill in all required fields (Name, Email, Phone)');
+        return;
+      }
+      
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      
+      // Disable button during processing
+      const btn = document.getElementById('place-order-btn');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+      
+      const customerInfo = {
+        name,
+        email,
+        phone,
+        address,
+        notes,
+        payment
+      };
+      
+      try {
+        // Place order
+        const orderId = await placeOrder(customerInfo);
+        
+        if (orderId) {
+          // Show success
+          document.getElementById('success-order-id').textContent = `Order ID: ${orderId}`;
+          document.querySelector('.checkout-main').style.display = 'none';
+          document.querySelector('.checkout-sidebar').style.display = 'none';
+          document.querySelector('.checkout-header').style.display = 'none';
+          document.getElementById('order-success').classList.add('show');
+        } else {
+          alert('Failed to place order. Please try again.');
+          btn.disabled = false;
+          btn.textContent = 'Place Order';
+        }
+      } catch (error) {
+        console.error('Order error:', error);
+        alert('An error occurred. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Place Order';
+      }
+    }
+    
+    // Update global functions to refresh summary
+    window.updateQuantity = function(itemName, change) {
+      const item = cart.find(i => i.name === itemName);
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => i.name !== itemName);
+        }
+        localStorage.setItem('dom_cart', JSON.stringify(cart));
+        renderCartItems();
+        updateSummary();
+        updateCartCount();
+      }
+    };
+  </script>
+</body>
+</html>

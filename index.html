@@ -4,16 +4,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DoM</title>
+  <title>Kanchhi ko Bhatti</title>
   <link rel="stylesheet" href="demo.css">
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     html {
       scroll-behavior: smooth;
+    }
+    .cart-count {
+      background: #dc3545;
+      color: white;
+      border-radius: 50%;
+      padding: 0.1rem 0.4rem;
+      font-size: 0.7rem;
+      margin-left: 0.3rem;
     }
   </style>
 </head>
 
 <body>
+<!-- Preloader -->
+<div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FFF8F4; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+  <div style="text-align: center;">
+    <!-- Spinning Tomato -->
+    <img src="https://cdn-icons-png.flaticon.com/512/1202/1202125.png" alt="Tomato" style="width: 80px; height: 80px; animation: spin 1s linear infinite; margin-bottom: 20px;">
+    <!-- Cafe Name -->
+    <h1 style="font-family: cursive; color: #B86B28; font-size: 2rem; margin-bottom: 10px;">Kanchhi ko Bhatti</h1>
+    <p style="color: #9B8577; font-size: 1.1rem;">कान्छीको भट्टी</p>
+    <p style="color: #9B8577; margin-top: 20px;">Loading deliciousness...</p>
+  </div>
+</div>
+
+<style>
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    const preloader = document.getElementById('preloader');
+    preloader.style.transition = 'opacity 0.5s';
+    preloader.style.opacity = '0';
+    setTimeout(function() {
+      preloader.style.display = 'none';
+    }, 500);
+  }, 2000);
+});
+</script>
+
 <!-- body begins -->
   <!-- <div id="preloader" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-white" style="z-index: 9999; opacity: 0.9;">
     <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
@@ -24,9 +66,16 @@
   <!-- HEADER -->
   <header>
     <button onclick="location.reload()" style="background:none; border:none; cursor:pointer; padding:0;" title="Reload page">
-      <h1 style="display:inline; font-family: var(--font-logo, cursive); color: var(--primary); font-size: 2.1rem; letter-spacing:0.04em; margin:0;">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968757.png" alt="Logo" style="width:34px;height:34px;border-radius:7px;vertical-align:middle;margin-right:0.36em;"> <!-- Project logo image -->
-        DoM
+      <h1 style="display:inline; font-family: var(--font-logo, cursive); color: var(--primary); font-size: 2.1rem; letter-spacing:0.04em; margin:0; display: flex; align-items: center; gap: 0.42em;">
+        <!-- Use same logo SVG as in footer, with similar size to before -->
+        <span style="display:inline-flex; align-items:center; vertical-align:middle; margin-right:0.13em;">
+          <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+            <rect width="48" height="48" rx="13" fill="#2A1A10"/>
+            <path d="M24 8c0 0-2 5-1 9-3-2-4-7-4-7s-4 6-2 12c-2-1-3-4-3-4s-2 8 4 13c1 1 3 2 6 2s5-1 6-2c6-5 4-13 4-13s-1 3-3 4c2-6-2-12-2-12s-1 5-4 7c1-4-1-9-1-9z" fill="#E8871A"/>
+            <path d="M24 28c0 0-1 2-.5 4s2 3 2 3 1.5-1 2-3-.5-4-.5-4-1 1.5-1.5 2c.5-1.5.5-2.5.5-2z" fill="#FDF6E3"/>
+          </svg>
+        </span>
+        <span>Kanchhi ko Bhatti</span>
       </h1>
     </button>
     <!-- Flex container to keep nav blue bar and profile icon in one line but separate visually -->
@@ -55,13 +104,23 @@
             </a>
           </li>
           <li class="nav-item ms-auto" role="presentation">
-            <a class="nav-link rounded-5 d-flex align-items-center" id="cart-tab2" href="#" role="tab" aria-selected="false" style="gap:0.5em; color: #e6e6e6;">
-              🛒 Cart
+            <a class="nav-link rounded-5 d-flex align-items-center" id="cart-tab2" href="checkout.html" role="tab" aria-selected="false" style="gap:0.5em; color: #e6e6e6;">
+              🛒 Cart <span class="cart-count" id="cart-count">0</span>
             </a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link rounded-5 bg-success text-white" id="checkout-tab2" href="#" role="tab" aria-selected="false" style="font-weight:bold;">
+            <a class="nav-link rounded-5 bg-success text-white" id="checkout-tab2" href="checkout.html" role="tab" aria-selected="false" style="font-weight:bold;">
               Checkout
+            </a>
+          </li>
+          <li class="nav-item" role="presentation" id="login-nav-item">
+            <a class="nav-link rounded-5" id="login-tab2" href="login.html" role="tab" aria-selected="false" style="color: #e6e6e6;">
+              Login
+            </a>
+          </li>
+          <li class="nav-item" role="presentation" id="admin-nav-item" style="display: none;">
+            <a class="nav-link rounded-5 bg-warning text-dark" id="admin-tab2" href="admin.html" role="tab" aria-selected="false" style="font-weight:bold;">
+              Admin
             </a>
           </li>
         </ul>
@@ -99,8 +158,8 @@
         <div style="font-size: 1rem; color: #555;">Steamed or fried dumplings stuffed with meat or vegetables, served with spicy chutney.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 180</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Momo', 180)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Momo', 180); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Dal Bhat -->
@@ -110,8 +169,8 @@
         <div style="font-size: 1rem; color: #555;">Traditional Nepali rice and lentil soup with curried vegetables.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 250</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Dal Bhat', 250)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Dal Bhat', 250); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Kukhura Ko Masu -->
@@ -121,8 +180,8 @@
         <div style="font-size: 1rem; color: #555;">Nepali-style chicken curry with rich spices and fresh herbs.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 320</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Kukhura Ko Masu', 320)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Kukhura Ko Masu', 320); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Sel Roti -->
@@ -132,8 +191,8 @@
         <div style="font-size: 1rem; color: #555;">Sweet, circular rice flour bread fried to golden crispness, a festival staple.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 100</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Sel Roti', 100)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Sel Roti', 100); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Bara -->
@@ -143,8 +202,8 @@
         <div style="font-size: 1rem; color: #555;">Newari lentil patties—crispy outside, soft inside; can be plain or with egg/meat.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 120</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Bara', 120)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Bara', 120); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Gundruk Soup -->
@@ -154,8 +213,8 @@
         <div style="font-size: 1rem; color: #555;">Fermented leafy greens soup, tangy and packed with probiotics.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 90</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Gundruk Soup', 90)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Gundruk Soup', 90); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Sukuti -->
@@ -165,8 +224,8 @@
         <div style="font-size: 1rem; color: #555;">Air-dried spiced meat (buff or goat), grilled and served as a snack or with beer.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 250</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Sukuti', 250)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Sukuti', 250); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Yomari -->
@@ -176,8 +235,8 @@
         <div style="font-size: 1rem; color: #555;">Sweet Newari steamed dumpling filled with jaggery and sesame paste, festive delight!</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 140</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Yomari', 140)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Yomari', 140); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Aloo Achar -->
@@ -187,8 +246,8 @@
         <div style="font-size: 1rem; color: #555;">Tangy and spicy potato salad with mustard oil, sesame, and turmeric.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 100</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Aloo Achar', 100)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Aloo Achar', 100); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Chatamari -->
@@ -198,8 +257,8 @@
         <div style="font-size: 1rem; color: #555;">Newari rice flour crepe topped with mince meat, eggs, and spices.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 180</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Chatamari', 180)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Chatamari', 180); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Pani Puri -->
@@ -209,8 +268,8 @@
         <div style="font-size: 1rem; color: #555;">Crispy fried hollow balls stuffed with potatoes, chickpeas and tangy spicy water.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 80</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Pani Puri', 80)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Pani Puri', 80); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Thukpa -->
@@ -220,8 +279,8 @@
         <div style="font-size: 1rem; color: #555;">Warm noodle soup with vegetables, chicken or buff, and Himalayan spices.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 230</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Thukpa', 230)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Thukpa', 230); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Kwati -->
@@ -231,8 +290,8 @@
         <div style="font-size: 1rem; color: #555;">A rich soup made from a blend of nine different sprouted beans, eaten during Janai Purnima.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 150</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Kwati', 150)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Kwati', 150); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Palak Paneer -->
@@ -242,8 +301,8 @@
         <div style="font-size: 1rem; color: #555;">Nepali-style creamy spinach with paneer cheese cubes, lightly spiced.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 210</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Palak Paneer', 210)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Palak Paneer', 210); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Lassi -->
@@ -253,8 +312,8 @@
         <div style="font-size: 1rem; color: #555;">Traditional cold yogurt drink, sweet or salted for cooling off in summer.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 90</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Lassi', 90)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Lassi', 90); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Choyla -->
@@ -264,8 +323,8 @@
         <div style="font-size: 1rem; color: #555;">Newari-style grilled spicy meat (usually buff or chicken), smoky and fiery!</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 260</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Choyla', 260)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Choyla', 260); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Bhatmas Sadeko -->
@@ -275,8 +334,8 @@
         <div style="font-size: 1rem; color: #555;">Soybean salad with onions, green chili, ginger, and coriander—crunchy and flavorful!</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 90</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Bhatmas Sadeko', 90)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Bhatmas Sadeko', 90); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Sekuwa -->
@@ -286,8 +345,8 @@
         <div style="font-size: 1rem; color: #555;">Charbroiled spiced meat skewers (pork, chicken, or buff), a favorite Nepali BBQ snack.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 280</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Sekuwa', 280)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Sekuwa', 280); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Pakhala Bhat -->
@@ -297,8 +356,8 @@
         <div style="font-size: 1rem; color: #555;">Fermented rice with water, mostly eaten during summer for cooling. Nepali twist.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 75</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Pakhala Bhat', 75)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Pakhala Bhat', 75); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Dhido -->
@@ -308,8 +367,8 @@
         <div style="font-size: 1rem; color: #555;">Thick, wholesome buckwheat/ragi porridge, a healthy staple from rural Nepal.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 130</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Dhido', 130)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Dhido', 130); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Jhol Momo -->
@@ -319,8 +378,8 @@
         <div style="font-size: 1rem; color: #555;">Steamed dumplings in a spicy, tangy soup—an iconic winter treat!</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 210</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Jhol Momo', 210)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Jhol Momo', 210); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
       <!-- Fini Roti -->
@@ -330,8 +389,8 @@
         <div style="font-size: 1rem; color: #555;">Crispy, flaky and sweet fried bread, a festive Nepali treat.</div>
         <div style="display: flex; align-items: center; margin: 0.7rem 0 0.3rem;">
           <span style="font-weight: bold; color: #A9742A; margin-right: 1em;">NPR 120</span>
-          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;">Add to Cart</button>
-          <button class="btn btn-success btn-sm">Buy</button>
+          <button class="btn btn-outline-primary btn-sm" style="margin-right: 0.5em;" onclick="addToCart('Fini Roti', 120)">Add to Cart</button>
+          <button class="btn btn-success btn-sm" onclick="addToCart('Fini Roti', 120); window.location.href='checkout.html'">Buy</button>
         </div>
       </div>
     </section>
@@ -551,6 +610,25 @@
         <button id="chat-send" type="button" class="chat-send">Send</button>
       </div>
     </div>
+
+    <!-- Demo JS -->
+    <script src="demo.js"></script>
+    <script>
+      // Update nav based on login status
+      document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(sessionStorage.getItem('dom_current_user'));
+        const loginNavItem = document.getElementById('login-nav-item');
+        const adminNavItem = document.getElementById('admin-nav-item');
+        
+        if (currentUser) {
+          // User is logged in
+          if (loginNavItem) loginNavItem.style.display = 'none';
+          if (adminNavItem && currentUser.role === 'admin') {
+            adminNavItem.style.display = 'block';
+          }
+        }
+      });
+    </script>
 
     <script src="demo.js"></script>
 </body>
