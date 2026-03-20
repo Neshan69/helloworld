@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - DoM</title>
+  <title>Admin Dashboard - Kanchhi ko Bhatti</title>
   <link rel="stylesheet" href="demo.css">
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -145,7 +145,193 @@
       color: var(--primary);
     }
     
-    /* Orders Table */
+    /* Menu Management */
+    .menu-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+    }
+    
+    .menu-section h3 {
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .add-item-form {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr auto;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--primary-light);
+      border-radius: 8px;
+    }
+    
+    .add-item-form .form-group {
+      margin: 0;
+    }
+    
+    .add-item-form label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-muted);
+    }
+    
+    .add-item-form input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .add-item-form button {
+      padding: 0.5rem 1rem;
+      background: var(--success);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .add-item-form button:hover {
+      background: #218838;
+    }
+    
+    /* Menu Items Table */
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .menu-table th,
+    .menu-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .menu-table th {
+      background: var(--primary-light);
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .menu-table tr:hover {
+      background: #f9f9f9;
+    }
+    
+    .menu-item-price {
+      font-weight: bold;
+      color: var(--primary);
+    }
+    
+    .menu-item-discount {
+      color: var(--success);
+      font-size: 0.85rem;
+    }
+    
+    .menu-item-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .menu-item-actions button {
+      padding: 0.3rem 0.8rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    
+    .btn-edit {
+      background: var(--warning);
+      color: #333;
+    }
+    
+    .btn-delete {
+      background: var(--danger);
+      color: white;
+    }
+    
+    /* Promo Codes Section */
+    .promo-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+    }
+    
+    .promo-section h3 {
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .promo-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .promo-card {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: var(--primary-light);
+    }
+    
+    .promo-card .promo-code {
+      font-weight: bold;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .promo-card .promo-desc {
+      color: var(--success);
+      margin: 0.3rem 0;
+    }
+    
+    .promo-card .promo-delete {
+      background: var(--danger);
+      color: white;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    
+    /* Add Promo Form */
+    .add-promo-form {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .add-promo-form input {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      flex: 1;
+      min-width: 150px;
+    }
+    
+    .add-promo-form button {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    /* Orders Section */
     .orders-section {
       background: white;
       padding: 1.5rem;
@@ -265,6 +451,10 @@
         border-bottom-color: var(--primary);
       }
       
+      .add-item-form {
+        grid-template-columns: 1fr;
+      }
+      
       .orders-table {
         font-size: 0.9rem;
       }
@@ -274,42 +464,99 @@
         padding: 0.5rem;
       }
     }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal.show {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+    }
+    
+    .modal-content h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .modal-content input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .modal-content .modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+    
+    .modal-content button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .modal-content .btn-save {
+      background: var(--success);
+      color: white;
+    }
+    
+    .modal-content .btn-cancel {
+      background: #6c757d;
+      color: white;
+    }
   </style>
 </head>
-<body>
-<!-- Preloader -->
-<div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FFF8F4; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
-  <div style="text-align: center;">
-    <!-- Spinning Tomato -->
-    <img src="https://cdn-icons-png.flaticon.com/512/1202/1202125.png" alt="Tomato" style="width: 80px; height: 80px; animation: spin 1s linear infinite; margin-bottom: 20px;">
-    <!-- Cafe Name -->
-    <h1 style="font-family: cursive; color: #B86B28; font-size: 2rem; margin-bottom: 10px;">Kanchhi ko Bhatti</h1>
-    <p style="color: #9B8577; font-size: 1.1rem;">Admin Panel</p>
+<body style="overflow-x: hidden; max-width: 100vw;">
+  <!-- Preloader -->
+  <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FFF8F4; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="text-align: center;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1202/1202125.png" alt="Tomato" style="width: 80px; height: 80px; animation: spin 1s linear infinite; margin-bottom: 20px;">
+      <h1 style="font-family: cursive; color: #B86B28; font-size: 2rem; margin-bottom: 10px;">Kanchhi ko Bhatti</h1>
+      <p style="color: #9B8577; font-size: 1.1rem;">Admin Panel</p>
+    </div>
   </div>
-</div>
 
-<style>
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-</style>
+  <style>
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  </style>
 
-<script>
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    const preloader = document.getElementById('preloader');
-    preloader.style.transition = 'opacity 0.5s';
-    preloader.style.opacity = '0';
+  <script>
+  window.addEventListener('load', function() {
     setTimeout(function() {
-      preloader.style.display = 'none';
-    }, 500);
-  }, 1500);
-});
-</script>
+      const preloader = document.getElementById('preloader');
+      preloader.style.transition = 'opacity 0.5s';
+      preloader.style.opacity = '0';
+      setTimeout(function() { preloader.style.display = 'none'; }, 500);
+    }, 1500);
+  });
+  </script>
 
   <header class="admin-header">
-    <h1>⚙️ DoM Admin Panel</h1>
+    <h1>⚙️ Kanchhi ko Bhatti Admin</h1>
     <div class="user-info">
       <span id="admin-name">Admin</span>
       <button class="logout-btn" onclick="logout()">Logout</button>
@@ -321,6 +568,8 @@ window.addEventListener('load', function() {
       <ul>
         <li><a href="#" class="active" onclick="showSection('dashboard')">📊 Dashboard</a></li>
         <li><a href="#" onclick="showSection('orders')">📋 Orders</a></li>
+        <li><a href="#" onclick="showSection('menu')">🍽️ Menu Management</a></li>
+        <li><a href="#" onclick="showSection('promos')">🎟️ Promo Codes</a></li>
         <li><a href="index.html">🌐 View Website</a></li>
       </ul>
     </nav>
@@ -377,7 +626,97 @@ window.addEventListener('load', function() {
           </div>
         </div>
       </section>
+      
+      <!-- Menu Management Section -->
+      <section id="menu-section" style="display: none;">
+        <h2>Menu Management</h2>
+        
+        <div class="menu-section">
+          <h3>Add New Item</h3>
+          <div class="add-item-form">
+            <div class="form-group">
+              <label>Item Name</label>
+              <input type="text" id="new-item-name" placeholder="e.g., Chicken Momo">
+            </div>
+            <div class="form-group">
+              <label>Price (NPR)</label>
+              <input type="number" id="new-item-price" placeholder="150">
+            </div>
+            <div class="form-group">
+              <label>Discount (NPR)</label>
+              <input type="number" id="new-item-discount" placeholder="0" value="0">
+            </div>
+            <div class="form-group">
+              <label>Image URL</label>
+              <input type="text" id="new-item-image" placeholder="https://...">
+            </div>
+            <button onclick="addMenuItem()">➕ Add Item</button>
+          </div>
+          
+          <h3>Current Menu Items</h3>
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="menu-tbody">
+              <!-- Menu items will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+      <!-- Promo Codes Section -->
+      <section id="promo-section" style="display: none;">
+        <h2>Promo Codes Management</h2>
+        
+        <div class="promo-section">
+          <h3>Create New Promo Code</h3>
+          <div class="add-promo-form">
+            <input type="text" id="new-promo-code" placeholder="Promo Code (e.g., WELCOME10)">
+            <select id="new-promo-type" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+              <option value="percent">Percentage (%)</option>
+              <option value="fixed">Fixed Amount (NPR)</option>
+            </select>
+            <input type="number" id="new-promo-value" placeholder="Value">
+            <button onclick="addPromoCode()">➕ Create Promo</button>
+          </div>
+          
+          <h3 style="margin-top: 1.5rem;">Active Promo Codes</h3>
+          <div class="promo-list" id="promo-list">
+            <!-- Promo codes will be populated here -->
+          </div>
+        </div>
+      </section>
     </main>
+  </div>
+  
+  <!-- Edit Menu Item Modal -->
+  <div class="modal" id="edit-modal">
+    <div class="modal-content">
+      <h3>Edit Menu Item</h3>
+      <input type="hidden" id="edit-item-index">
+      <div class="form-group">
+        <label>Item Name</label>
+        <input type="text" id="edit-item-name">
+      </div>
+      <div class="form-group">
+        <label>Price (NPR)</label>
+        <input type="number" id="edit-item-price">
+      </div>
+      <div class="form-group">
+        <label>Discount (NPR)</label>
+        <input type="number" id="edit-item-discount">
+      </div>
+      <div class="modal-buttons">
+        <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+        <button class="btn-save" onclick="saveMenuItem()">Save Changes</button>
+      </div>
+    </div>
   </div>
   
   <script src="demo.js"></script>
@@ -393,6 +732,41 @@ window.addEventListener('load', function() {
     if (currentUser) {
       document.getElementById('admin-name').textContent = currentUser.name;
     }
+    
+    // Menu items (stored in localStorage for persistence)
+    let menuItems = JSON.parse(localStorage.getItem('dom_menu_items')) || [
+      { name: 'Momo', price: 180, discount: 0, image: 'https://static.toiimg.com/thumb/58966383.cms?width=1200&height=900' },
+      { name: 'Dal Bhat', price: 250, discount: 0, image: 'https://www.tasteatlas.com/images/dishes/8be3f7cecb1f474c9e983164ab11f8fc.jpg' },
+      { name: 'Kukhura Ko Masu', price: 320, discount: 20, image: 'https://www.yourhungerstop.com/wp-content/uploads/2017/06/nepali-chicken-curry.jpg' },
+      { name: 'Sel Roti', price: 100, discount: 0, image: 'https://img-global.cpcdn.com/recipes/cb0261a554595429/1200x630cq70/photo.jpg' },
+      { name: 'Bara', price: 120, discount: 0, image: 'https://www.tasteatlas.com/images/dishes/916b7b13419b4cd2bb6a2e63a64a6b68.jpg' },
+      { name: 'Gundruk Soup', price: 90, discount: 0, image: 'https://english.onlinekhabar.com/wp-content/uploads/2022/06/Gundruk-soup.-Photo_-Nasana-Ba_.jpg' },
+      { name: 'Sukuti', price: 250, discount: 0, image: 'https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2015/11/Sukuti-Photo_-THT.jpg' },
+      { name: 'Yomari', price: 140, discount: 10, image: 'https://i.ytimg.com/vi/4UUfZo0M0pI/maxresdefault.jpg' },
+      { name: 'Aloo Achar', price: 100, discount: 0, image: 'https://myweekendplan.asia/wp-content/uploads/2023/09/Aloo-Achar-Recipe-Nepalese-Potato-Salad-1024x683.jpeg' },
+      { name: 'Chatamari', price: 180, discount: 0, image: 'https://www.tasteatlas.com/images/dishes/9d40dafc89e24c8f94bd4d553c3bcdf2.jpg' },
+      { name: 'Pani Puri', price: 80, discount: 0, image: 'https://www.196flavors.com/wp-content/uploads/2022/04/pani-puri-3fp.jpg' },
+      { name: 'Thukpa', price: 230, discount: 0, image: 'https://img-global.cpcdn.com/recipes/2a6c7aeed9a00e7d/1200x630cq70/photo.jpg' },
+      { name: 'Kwati', price: 150, discount: 0, image: 'https://aksharanghosh.com/wp-content/uploads/2021/08/nepali-style-kwati-recipe.jpg' },
+      { name: 'Palak Paneer', price: 210, discount: 0, image: 'https://curlytales.com/wp-content/uploads/2020/08/palakpaneer-1.jpg' },
+      { name: 'Lassi', price: 90, discount: 0, image: 'https://www.thetoptours.com/wp-content/uploads/sel-roti.jpg' },
+      { name: 'Choyla', price: 260, discount: 0, image: 'https://www.tasteatlas.com/images/dishes/de3d8c32c8fd44efa66d3bb5e1e997e2.jpg' },
+      { name: 'Bhatmas Sadeko', price: 90, discount: 0, image: 'https://www.nepal-travel-guide.com/wp-content/uploads/2023/03/bhatmas-sadeko.jpg' },
+      { name: 'Sekuwa', price: 280, discount: 15, image: 'https://www.tasteatlas.com/images/dishes/1f7272f4e75c48598a6a9c1b5a899fa4.jpg' },
+      { name: 'Pakhala Bhat', price: 75, discount: 0, image: 'https://img-global.cpcdn.com/recipes/ee0f84f0a533bdc4/1200x630cq70/photo.jpg' },
+      { name: 'Dhido', price: 130, discount: 0, image: 'https://www.vegetariantimes.com/.image/t_share/MTk2NjI4ODQzNTE1NTA2MjA0/dhido-gettyimages-481168846.jpg' },
+      { name: 'Jhol Momo', price: 210, discount: 0, image: 'https://media-cdn.tripadvisor.com/media/photo-s/1a/df/64/70/jhol-momo.jpg' },
+      { name: 'Fini Roti', price: 120, discount: 0, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPJ9LCX3QQvTEFS47jEzk4I4OyJ47OTkXMgA&usqp=CAU' }
+    ];
+    
+    // Promo codes
+    let promoCodes = JSON.parse(localStorage.getItem('dom_promo_codes')) || {
+      'WELCOME10': { type: 'percent', value: 10, description: '10% off' },
+      'FIRST20': { type: 'percent', value: 20, description: '20% off' },
+      'SAVE50': { type: 'fixed', value: 50, description: 'NPR 50 off' },
+      'SAVE100': { type: 'fixed', value: 100, description: 'NPR 100 off' },
+      'HALFOFF': { type: 'percent', value: 50, description: '50% off!' }
+    };
     
     // Load orders
     let orders = JSON.parse(localStorage.getItem('dom_orders')) || [];
@@ -410,6 +784,137 @@ window.addEventListener('load', function() {
       const today = new Date().toDateString();
       const todayOrders = orders.filter(o => new Date(o.date).toDateString() === today).length;
       document.getElementById('today-orders').textContent = todayOrders;
+    }
+    
+    // Render menu items
+    function renderMenuItems() {
+      const tbody = document.getElementById('menu-tbody');
+      
+      tbody.innerHTML = menuItems.map((item, index) => `
+        <tr>
+          <td>${item.name}</td>
+          <td class="menu-item-price">NPR ${item.price}</td>
+          <td>${item.discount > 0 ? `<span class="menu-item-discount">NPR ${item.discount} off!</span>` : '-'}</td>
+          <td class="menu-item-actions">
+            <button class="btn-edit" onclick="openEditModal(${index})">✏️ Edit</button>
+            <button class="btn-delete" onclick="deleteMenuItem(${index})">🗑️ Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+    
+    // Add menu item
+    function addMenuItem() {
+      const name = document.getElementById('new-item-name').value.trim();
+      const price = parseInt(document.getElementById('new-item-price').value);
+      const discount = parseInt(document.getElementById('new-item-discount').value) || 0;
+      const image = document.getElementById('new-item-image').value.trim();
+      
+      if (!name || !price) {
+        alert('Please enter item name and price');
+        return;
+      }
+      
+      menuItems.push({ name, price, discount: discount > 0 ? discount : 0, image });
+      localStorage.setItem('dom_menu_items', JSON.stringify(menuItems));
+      
+      // Clear form
+      document.getElementById('new-item-name').value = '';
+      document.getElementById('new-item-price').value = '';
+      document.getElementById('new-item-discount').value = '0';
+      document.getElementById('new-item-image').value = '';
+      
+      renderMenuItems();
+      alert('Item added successfully!');
+    }
+    
+    // Open edit modal
+    function openEditModal(index) {
+      const item = menuItems[index];
+      document.getElementById('edit-item-index').value = index;
+      document.getElementById('edit-item-name').value = item.name;
+      document.getElementById('edit-item-price').value = item.price;
+      document.getElementById('edit-item-discount').value = item.discount;
+      document.getElementById('edit-modal').classList.add('show');
+    }
+    
+    // Close edit modal
+    function closeEditModal() {
+      document.getElementById('edit-modal').classList.remove('show');
+    }
+    
+    // Save menu item
+    function saveMenuItem() {
+      const index = parseInt(document.getElementById('edit-item-index').value);
+      const name = document.getElementById('edit-item-name').value.trim();
+      const price = parseInt(document.getElementById('edit-item-price').value);
+      const discount = parseInt(document.getElementById('edit-item-discount').value) || 0;
+      
+      if (!name || !price) {
+        alert('Please enter item name and price');
+        return;
+      }
+      
+      menuItems[index] = { ...menuItems[index], name, price, discount };
+      localStorage.setItem('dom_menu_items', JSON.stringify(menuItems));
+      
+      closeEditModal();
+      renderMenuItems();
+      alert('Item updated successfully!');
+    }
+    
+    // Delete menu item
+    function deleteMenuItem(index) {
+      if (confirm('Are you sure you want to delete this item?')) {
+        menuItems.splice(index, 1);
+        localStorage.setItem('dom_menu_items', JSON.stringify(menuItems));
+        renderMenuItems();
+      }
+    }
+    
+    // Add promo code
+    function addPromoCode() {
+      const code = document.getElementById('new-promo-code').value.trim().toUpperCase();
+      const type = document.getElementById('new-promo-type').value;
+      const value = parseInt(document.getElementById('new-promo-value').value);
+      
+      if (!code || !value) {
+        alert('Please enter promo code and value');
+        return;
+      }
+      
+      const description = type === 'percent' ? `${value}% off` : `NPR ${value} off`;
+      promoCodes[code] = { type, value, description };
+      localStorage.setItem('dom_promo_codes', JSON.stringify(promoCodes));
+      
+      // Clear form
+      document.getElementById('new-promo-code').value = '';
+      document.getElementById('new-promo-value').value = '';
+      
+      renderPromoCodes();
+      alert('Promo code created successfully!');
+    }
+    
+    // Render promo codes
+    function renderPromoCodes() {
+      const promoList = document.getElementById('promo-list');
+      
+      promoList.innerHTML = Object.entries(promoCodes).map(([code, promo]) => `
+        <div class="promo-card">
+          <div class="promo-code">${code}</div>
+          <div class="promo-desc">${promo.description}</div>
+          <button class="promo-delete" onclick="deletePromoCode('${code}')">Delete</button>
+        </div>
+      `).join('');
+    }
+    
+    // Delete promo code
+    function deletePromoCode(code) {
+      if (confirm(`Are you sure you want to delete promo code ${code}?`)) {
+        delete promoCodes[code];
+        localStorage.setItem('dom_promo_codes', JSON.stringify(promoCodes));
+        renderPromoCodes();
+      }
     }
     
     // Render orders table
@@ -535,18 +1040,29 @@ window.addEventListener('load', function() {
       document.querySelectorAll('.admin-sidebar a').forEach(a => a.classList.remove('active'));
       event.target.classList.add('active');
       
+      // Hide all sections
+      document.getElementById('dashboard-section').style.display = 'none';
+      document.getElementById('orders-section').style.display = 'none';
+      document.getElementById('menu-section').style.display = 'none';
+      document.getElementById('promo-section').style.display = 'none';
+      
+      // Show selected section
       if (section === 'dashboard') {
         document.getElementById('dashboard-section').style.display = 'block';
-        document.getElementById('orders-section').style.display = 'none';
       } else if (section === 'orders') {
-        document.getElementById('dashboard-section').style.display = 'none';
         document.getElementById('orders-section').style.display = 'block';
+      } else if (section === 'menu') {
+        document.getElementById('menu-section').style.display = 'block';
+      } else if (section === 'promos') {
+        document.getElementById('promo-section').style.display = 'block';
       }
     }
     
     // Initialize
     updateStats();
     renderOrders();
+    renderMenuItems();
+    renderPromoCodes();
   </script>
 </body>
 </html>
