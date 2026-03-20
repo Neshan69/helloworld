@@ -25,7 +25,8 @@
   <header>
     <button onclick="location.reload()" style="background:none; border:none; cursor:pointer; padding:0;" title="Reload page">
       <h1 style="display:inline; font-family: var(--font-logo, cursive); color: var(--primary); font-size: 2.1rem; letter-spacing:0.04em; margin:0;">
-        Logo <!-- add a image of logo of this project-->
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968757.png" alt="Logo" style="width:34px;height:34px;border-radius:7px;vertical-align:middle;margin-right:0.36em;"> <!-- Project logo image -->
+        DoM
       </h1>
     </button>
     <!-- Flex container to keep nav blue bar and profile icon in one line but separate visually -->
@@ -33,7 +34,6 @@
       <nav class="navigation" style="flex:1;">
         <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist"
           style="--bs-nav-link-color: #e6e6e6; --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white); margin-bottom:0;">
-          <!-- Navigation items use <a> (anchor) tags instead of <button> for standard navigation -->
           <li class="nav-item" role="presentation">
             <a class="nav-link active rounded-5" id="home-tab2" href="#" role="tab" aria-selected="true" style="color: #e6e6e6;">
               Home
@@ -54,7 +54,6 @@
               Blog
             </a>
           </li>
-          <!-- Cart/Checkout options added to navbar -->
           <li class="nav-item ms-auto" role="presentation">
             <a class="nav-link rounded-5 d-flex align-items-center" id="cart-tab2" href="#" role="tab" aria-selected="false" style="gap:0.5em; color: #e6e6e6;">
               🛒 Cart
@@ -95,8 +94,8 @@
 
     <!-- Menu/Products Area -->
     <section id="menu-section" class="mb-5" style="display: flex; flex-wrap: wrap; gap: 2.5rem;">
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Momo -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://static.toiimg.com/thumb/58966383.cms?width=1200&height=900" alt="Momo" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Momo</h2>
         <div style="font-size: 1rem; color: #555;">Steamed or fried dumplings stuffed with meat or vegetables, served with spicy chutney.</div>
@@ -106,8 +105,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Dal Bhat -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.tasteatlas.com/images/dishes/8be3f7cecb1f474c9e983164ab11f8fc.jpg" alt="Dal Bhat" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Dal Bhat</h2>
         <div style="font-size: 1rem; color: #555;">Traditional Nepali rice and lentil soup with curried vegetables.</div>
@@ -117,8 +116,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Kukhura Ko Masu -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.yourhungerstop.com/wp-content/uploads/2017/06/nepali-chicken-curry.jpg" alt="Chicken Curry (Kukhura Ko Masu)" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Kukhura Ko Masu</h2>
         <div style="font-size: 1rem; color: #555;">Nepali-style chicken curry with rich spices and fresh herbs.</div>
@@ -128,8 +127,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Sel Roti -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://img-global.cpcdn.com/recipes/cb0261a554595429/1200x630cq70/photo.jpg" alt="Sel Roti" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Sel Roti</h2>
         <div style="font-size: 1rem; color: #555;">Sweet, circular rice flour bread fried to golden crispness, a festival staple.</div>
@@ -139,8 +138,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Bara -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.tasteatlas.com/images/dishes/916b7b13419b4cd2bb6a2e63a64a6b68.jpg" alt="Newari Bara" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Bara</h2>
         <div style="font-size: 1rem; color: #555;">Newari lentil patties—crispy outside, soft inside; can be plain or with egg/meat.</div>
@@ -150,8 +149,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Gundruk Soup -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://english.onlinekhabar.com/wp-content/uploads/2022/06/Gundruk-soup.-Photo_-Nasana-Ba_.jpg" alt="Gundruk Soup" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Gundruk Soup</h2>
         <div style="font-size: 1rem; color: #555;">Fermented leafy greens soup, tangy and packed with probiotics.</div>
@@ -161,8 +160,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Sukuti -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2015/11/Sukuti-Photo_-THT.jpg" alt="Sukuti (Dry Meat)" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Sukuti</h2>
         <div style="font-size: 1rem; color: #555;">Air-dried spiced meat (buff or goat), grilled and served as a snack or with beer.</div>
@@ -172,8 +171,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Yomari -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://i.ytimg.com/vi/4UUfZo0M0pI/maxresdefault.jpg" alt="Yomari" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Yomari</h2>
         <div style="font-size: 1rem; color: #555;">Sweet Newari steamed dumpling filled with jaggery and sesame paste, festive delight!</div>
@@ -183,8 +182,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Aloo Achar -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://myweekendplan.asia/wp-content/uploads/2023/09/Aloo-Achar-Recipe-Nepalese-Potato-Salad-1024x683.jpeg" alt="Aloo Achar" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Aloo Achar</h2>
         <div style="font-size: 1rem; color: #555;">Tangy and spicy potato salad with mustard oil, sesame, and turmeric.</div>
@@ -194,8 +193,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Chatamari -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.tasteatlas.com/images/dishes/9d40dafc89e24c8f94bd4d553c3bcdf2.jpg" alt="Chatamari" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Chatamari</h2>
         <div style="font-size: 1rem; color: #555;">Newari rice flour crepe topped with mince meat, eggs, and spices.</div>
@@ -205,8 +204,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Pani Puri -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.196flavors.com/wp-content/uploads/2022/04/pani-puri-3fp.jpg" alt="Pani Puri" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Pani Puri</h2>
         <div style="font-size: 1rem; color: #555;">Crispy fried hollow balls stuffed with potatoes, chickpeas and tangy spicy water.</div>
@@ -216,8 +215,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Thukpa -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://img-global.cpcdn.com/recipes/2a6c7aeed9a00e7d/1200x630cq70/photo.jpg" alt="Thukpa" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Thukpa</h2>
         <div style="font-size: 1rem; color: #555;">Warm noodle soup with vegetables, chicken or buff, and Himalayan spices.</div>
@@ -227,8 +226,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Kwati -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://aksharanghosh.com/wp-content/uploads/2021/08/nepali-style-kwati-recipe.jpg" alt="Kwati" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Kwati</h2>
         <div style="font-size: 1rem; color: #555;">A rich soup made from a blend of nine different sprouted beans, eaten during Janai Purnima.</div>
@@ -238,8 +237,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Palak Paneer -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://curlytales.com/wp-content/uploads/2020/08/palakpaneer-1.jpg" alt="Palak Paneer" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Palak Paneer</h2>
         <div style="font-size: 1rem; color: #555;">Nepali-style creamy spinach with paneer cheese cubes, lightly spiced.</div>
@@ -249,8 +248,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Lassi -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.thetoptours.com/wp-content/uploads/sel-roti.jpg" alt="Lassi" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Lassi</h2>
         <div style="font-size: 1rem; color: #555;">Traditional cold yogurt drink, sweet or salted for cooling off in summer.</div>
@@ -260,8 +259,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Choyla -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.tasteatlas.com/images/dishes/de3d8c32c8fd44efa66d3bb5e1e997e2.jpg" alt="Choyla" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Choyla</h2>
         <div style="font-size: 1rem; color: #555;">Newari-style grilled spicy meat (usually buff or chicken), smoky and fiery!</div>
@@ -271,8 +270,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Bhatmas Sadeko -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.nepal-travel-guide.com/wp-content/uploads/2023/03/bhatmas-sadeko.jpg" alt="Bhatmas Sadeko" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Bhatmas Sadeko</h2>
         <div style="font-size: 1rem; color: #555;">Soybean salad with onions, green chili, ginger, and coriander—crunchy and flavorful!</div>
@@ -282,8 +281,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Sekuwa -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.tasteatlas.com/images/dishes/1f7272f4e75c48598a6a9c1b5a899fa4.jpg" alt="Sekuwa" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Sekuwa</h2>
         <div style="font-size: 1rem; color: #555;">Charbroiled spiced meat skewers (pork, chicken, or buff), a favorite Nepali BBQ snack.</div>
@@ -293,8 +292,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Pakhala Bhat -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://img-global.cpcdn.com/recipes/ee0f84f0a533bdc4/1200x630cq70/photo.jpg" alt="Pakhala Bhat" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Pakhala Bhat</h2>
         <div style="font-size: 1rem; color: #555;">Fermented rice with water, mostly eaten during summer for cooling. Nepali twist.</div>
@@ -304,8 +303,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Dhido -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://www.vegetariantimes.com/.image/t_share/MTk2NjI4ODQzNTE1NTA2MjA0/dhido-gettyimages-481168846.jpg" alt="Dhido" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Dhido</h2>
         <div style="font-size: 1rem; color: #555;">Thick, wholesome buckwheat/ragi porridge, a healthy staple from rural Nepal.</div>
@@ -315,8 +314,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Jhol Momo -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/df/64/70/jhol-momo.jpg" alt="Jhol Momo" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Jhol Momo</h2>
         <div style="font-size: 1rem; color: #555;">Steamed dumplings in a spicy, tangy soup—an iconic winter treat!</div>
@@ -326,8 +325,8 @@
           <button class="btn btn-success btn-sm">Buy</button>
         </div>
       </div>
-      <div class="product-card"
-        style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
+      <!-- Fini Roti -->
+      <div class="product-card" style="flex: 1 1 280px; max-width: 340px; background: #fff8f3; border-radius: 14px; box-shadow:0 4px 16px #0001; padding:1.5rem; position:relative; float:left;">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPJ9LCX3QQvTEFS47jEzk4I4OyJ47OTkXMgA&usqp=CAU" alt="Fini Roti" style="width: 100%; border-radius:10px;">
         <h2 style="margin: 1rem 0 0.3rem; color: #A9742A;">Fini Roti</h2>
         <div style="font-size: 1rem; color: #555;">Crispy, flaky and sweet fried bread, a festive Nepali treat.</div>
@@ -437,6 +436,23 @@
         &copy; 2026 <span style="color:#A9742A; font-weight:600;">DoM</span>. All rights reserved. Made with <span style="color:#e2653a;">&#10084;</span> in Nepal.
       </div>
     </footer>
+
+    <!-- Chat widget -->
+    <button id="chat-toggle" type="button" aria-label="Open chat" class="chat-toggle">
+      Chat
+    </button>
+
+    <div id="chat-widget" class="chat-widget" role="dialog" aria-label="Cafe chatbot">
+      <div class="chat-header">
+        <div class="chat-title">Aroma Café Helper</div>
+        <button id="chat-close" type="button" class="chat-close" aria-label="Close chat">×</button>
+      </div>
+      <div id="chat-messages" class="chat-messages"></div>
+      <div class="chat-input-row">
+        <input id="chat-input" class="chat-input" type="text" placeholder="Ask about menu, prices, contact..." autocomplete="off" />
+        <button id="chat-send" type="button" class="chat-send">Send</button>
+      </div>
+    </div>
 
     <script src="demo.js"></script>
 </body>
