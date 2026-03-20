@@ -1,11 +1,42 @@
-<!DOCTYPE html>
+o!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Account - Online Restaurant</title>
+  <title>Create Your Account - Kanchhi ko Bhatti कान्छीको भट्टी</title>
   <link rel="stylesheet" href="demo.css">
   <style>
+    /* Preloader Styles */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--surface, #FFFAF7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+    }
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .preloader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--border, #EDD5C0);
+      border-top: 4px solid var(--primary, #B86B28);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .profile-container {
       max-width: 410px;
       margin: 2.5rem auto;
@@ -89,6 +120,11 @@
   </style>
 </head>
 <body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-spinner"></div>
+  </div>
+
   <main>
     <div class="profile-container">
       <h2>Create Your Account</h2>
@@ -126,8 +162,8 @@
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
-      // We do NOT send password by email for security, but including as requested:
-      const password = document.getElementById('password').value.trim();
+      // Note: Password is not sent in this demo for security reasons
+      // In production, handle password securely via backend
 
       // Prepare message
       const subject = encodeURIComponent("New User Registration Notification");
@@ -135,8 +171,7 @@
         `A user has registered on your site:\n\n` +
         `Name: ${name}\n` +
         `Email: ${email}\n` +
-        `Phone: ${phone}\n` +
-        `Password: ${password}\n\n` +
+        `Phone: ${phone}\n\n` +
         `-- End of details --`
       );
 
@@ -152,8 +187,8 @@
       // emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
       //     name: name,
       //     email: email,
-      //     phone: phone,
-      //     password: password   // Not recommended to send plain password in real apps!
+      //     phone: phone
+      //     // Never include password in emails!
       // })
       // .then(function(response) {
       //   document.getElementById('success-message').style.display = 'block';
@@ -171,12 +206,22 @@
       // Un-comment below if no API/service set up
       alert(
         "This demo can't automatically email your info to the admin.\n\nTo enable this, connect a service like EmailJS, SMTP server, or build a backend endpoint for sending email on submit.\n\nHere's the info you would receive:\n\n" +
-        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPassword: ${password}`
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n[Password hidden for security]`
       );
       document.getElementById('success-message').style.display = 'block';
       document.getElementById('error-message').style.display = 'none';
 
       // In a real-world deployment, set up a backend route like '/api/send-profile' and POST form data there to handle sending email securely.
+      // Note: Password should NEVER be sent or displayed in plaintext - this is for demo only
+    });
+
+    // Hide preloader when page is fully loaded
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      preloader.classList.add('hidden');
+      setTimeout(function() {
+        preloader.style.display = 'none';
+      }, 400); // Match the transition duration
     });
   </script>
 </body>

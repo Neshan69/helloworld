@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Seat – Kanchhi ko Bhatti कान्छीको भट्टी</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    :root {
+      --primary: #B86B28;
+      --surface: #FFFAF7;
+      --border: #EDD5C0;
+      --radius-lg: 18px;
+      --radius: 8px;
+      --font: 'Montserrat', sans-serif;
+      --text: #543B1C;
+    }
+    body {
+      background: var(--surface);
+      font-family: var(--font);
+      margin: 0;
+      color: var(--text);
+    }
+    .booking-container {
+      max-width: 420px;
+      background: #fff;
+      margin: 2.5rem auto;
+      padding: 2.2rem 1.8rem 1.5rem 1.8rem;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 2px 22px #b86b2812;
+    }
+    .booking-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+    form label {
+      display: block;
+      margin-bottom: .25rem;
+      font-weight: 600;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: .75rem .5rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    form textarea {
+      resize: vertical;
+      min-height: 70px;
+      max-height: 180px;
+    }
+    .seat-options {
+      display: grid;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .seat-options label {
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+    }
+    .complementary-list {
+      background: #fcf3e8;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .8rem 1.1rem;
+      margin-bottom: 1.1rem;
+      font-size: 0.97rem;
+      color: #8b5119;
+    }
+    .submit-btn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      padding: .85rem 0;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.08rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px #b86b2812;
+      transition: background .2s;
+    }
+    .submit-btn:hover {
+      background: #945618;
+    }
+    .success-message {
+      text-align: center;
+      color: #219a39;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      margin-bottom: -0.7rem;
+      font-size: 1.09rem;
+    }
+    @media (max-width: 600px) {
+      .booking-container {
+        max-width: 98vw;
+        margin: 1.7rem 1vw;
+        padding: 1.35rem 0.6rem 1.1rem 0.6rem;
+      }
+      .complementary-list {
+        padding: .5rem 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="booking-container">
+    <h2>Book a Seat</h2>
+    <form id="bookingForm">
+      <label for="bookingDate">Select Date</label>
+      <input type="date" id="bookingDate" name="bookingDate" required min="<?= date('Y-m-d'); ?>">
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required>
+
+      <label>Booking Type</label>
+      <div class="seat-options">
+        <label><input type="radio" name="bookingType" value="Single Seat" required> Single Seat</label>
+        <label><input type="radio" name="bookingType" value="Family" required> Family</label>
+        <label><input type="radio" name="bookingType" value="Friends" required> For Friends</label>
+        <label><input type="radio" name="bookingType" value="Birthday Party" required> Birthday Party</label>
+        <label><input type="radio" name="bookingType" value="Marriage Anniversary" required> Marriage Anniversary</label>
+        <label><input type="radio" name="bookingType" value="Custom Event" required> Other (Specify below)</label>
+      </div>
+
+      <label for="eventDetails">Event Details or Requests (Optional)</label>
+      <textarea id="eventDetails" name="eventDetails" placeholder="Write any special request or more information..."></textarea>
+
+      <div class="complementary-list">
+        <strong>Get Complimentary Dishes:</strong> Popcorn, Chatpate, Panipuri, Mini Samosa, Cold Drinks & more!
+      </div>
+
+      <button type="submit" class="submit-btn">Book Now</button>
+      <div id="successMsg" class="success-message" style="display:none;">Thank you! Your seat is booked.</div>
+    </form>
+  </div>
+  <script>
+    // Email notification is not handled here - needs backend (e.g., emailjs, Formspree, etc.)
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Simple frontend validation already present via 'required'
+      // Show success message and clear fields
+      document.getElementById('successMsg').style.display = "block";
+      setTimeout(function() {
+        document.getElementById('successMsg').style.display = "none";
+      }, 3000);
+      this.reset();
+    });
+    // Set min date to today for date input (if not using PHP/SSR)
+    document.addEventListener('DOMContentLoaded', function() {
+      var dateField = document.getElementById('bookingDate');
+      var today = new Date();
+      var yyyy = today.getFullYear();
+      var mm = String(today.getMonth()+1).padStart(2,'0');
+      var dd = String(today.getDate()).padStart(2,'0');
+      dateField.min = yyyy + '-' + mm + '-' + dd;
+    });
+  </script>
+</body>
+</html>
